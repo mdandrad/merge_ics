@@ -33,6 +33,7 @@ The `sinks` node should contain a collection, each of which is a descriptor for 
 - `filename`: the filename where to write the calendar.
 - `sources`: a mapping with keys being the arbitrary identifiers of the sources that you want to merge. The events from each of these source calendars will be given the corresponding values in a `CATEGORIES` prop.
 - `options`: a mapping of calendar-level props. Make sure to always include `version` and `prodid` (otherwise the resulting ics file will be non-conformant).
+- `prepend_calendername`: If True the name of the calendar / category will be prepended to the events summary. (Default False)
 
 ### Example
 
@@ -72,6 +73,7 @@ sinks:
       calscale: GREGORIAN
       method: PUBLISH
       x-published-ttl: PT15M
+    prepend_calendername: False
 ```
 
 ## License

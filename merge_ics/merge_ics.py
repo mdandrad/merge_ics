@@ -29,7 +29,7 @@ def read_calendar(filename):
     return cal
 
 
-def write_calendar(options, sources, filename):
+def write_calendar(options, sources, filename, prepend_calendername):
     """Create and write ics file"""
     cal = Calendar()
     timezones_cache = []
@@ -43,6 +43,10 @@ def write_calendar(options, sources, filename):
         for event in in_cals[source_id].walk('VEVENT'):
             event_copy = Event(event)
             event_copy.add('categories', category)
+
+            if prepend_calendername:
+                event_copy['summary'] = category+" | "+event_copy['summary']
+
             cal.add_component(event_copy)
     with open(filename, 'wb') as f:
         f.write(cal.to_ical())
@@ -86,7 +90,7 @@ def main():
     # Create and write output calendars
     for sink in config['sinks']:
         try:
-            write_calendar(sink['options'], sink['sources'], sink['filename'])
+            write_calendar(sink['options'], sink['sources'], sink['filename'], sink.get("prepend_calendername") == True)
         except IOError:
             print('Unable to write ' + sink['filename'])
         except ValueError:
