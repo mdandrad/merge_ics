@@ -1,6 +1,8 @@
 merge_ics
 =========
 
+Fork of https://github.com/agraboso/merge_ics. Fixing two bugs and allowing to prepend the calendar / category to the summary of each event, making it easy to see where an event came from.
+
 A simple Python script to merge [RFC5545](https://tools.ietf.org/html/rfc5545) calendar files. It accepts several input calendars (referred to as *sources*) and processes them into one or more output calendar (*sinks*).
 
 ## Installation
