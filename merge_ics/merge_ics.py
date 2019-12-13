@@ -25,7 +25,7 @@ def download_calendar(url):
 def read_calendar(filename):
     """Parse local ics file"""
     with open(filename, 'r') as f:
-        cal = Calendar.from_ical(f)
+        cal = Calendar.from_ical(f.read())
     return cal
 
 
