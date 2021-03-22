@@ -12,7 +12,7 @@ in_cals = {}
 def read_config(filename):
     """Read YAML config file"""
     with open(filename, 'r') as f:
-        return yaml.load(f)
+        return yaml.safe_load(f)
 
 
 def download_calendar(url):
